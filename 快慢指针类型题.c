@@ -1,10 +1,11 @@
-/*ÒÔÏÂ´úÂë³ıÁËÅĞ¶Ï¶ÎÁ´±íÊÇ·ñÏà½»¼ò½àÊ¹ÓÃ¿ìÂıÖ¸ÕëÍâ
-¾ùÖ±½Ó²ÉÓÃ¿ìÂıÖ¸Õë À´½øĞĞ½âÌâ
-ËùÒÔÓĞÒÔÏÂ·´Ë¼
-1.µ±Á´±íÊÇ»·ÊÇÓ¦µ±¿¼ÂÇ¿ìÂıÖ¸Õë½øĞĞ½âÌâ
-2.µ±Á´±íµÄ½âÌâ¹Ø¼üÓë³¤¶ÈÏ¢Ï¢Ïà¹ØÊ±ºòÓ¦¿¼ÂÇ¿ìÂıÖ¸Õë   26.05.06
+/*ä»¥ä¸‹ä»£ç é™¤äº†åˆ¤æ–­æ®µé“¾è¡¨æ˜¯å¦ç›¸äº¤ç®€æ´ä½¿ç”¨å¿«æ…¢æŒ‡é’ˆå¤–
+å‡ç›´æ¥é‡‡ç”¨å¿«æ…¢æŒ‡é’ˆ æ¥è¿›è¡Œè§£é¢˜
+æ‰€ä»¥æœ‰ä»¥ä¸‹åæ€
+1.å½“é“¾è¡¨æ˜¯ç¯æ˜¯åº”å½“è€ƒè™‘å¿«æ…¢æŒ‡é’ˆè¿›è¡Œè§£é¢˜
+2.å½“é“¾è¡¨çš„è§£é¢˜å…³é”®ä¸é•¿åº¦æ¯æ¯ç›¸å…³æ—¶å€™åº”è€ƒè™‘å¿«æ…¢æŒ‡é’ˆ   26.05.06
+å¾ªç¯é“¾è¡¨æ‰¾åˆ°ç¯å£ç»™å‡ºè¯æ˜å’Œæ¨å¯¼
 */
-//------------------Á¦¿Û876Ñ°ÕÒÁ´±íÖĞ¼ä½Úµã----------------- 
+//------------------åŠ›æ‰£876å¯»æ‰¾é“¾è¡¨ä¸­é—´èŠ‚ç‚¹----------------- 
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -13,11 +14,11 @@
  * };
  */
 struct ListNode* middleNode(struct ListNode* head) {
-    //´¦ÀíÌØÊâ½Úµã
+    //å¤„ç†ç‰¹æ®ŠèŠ‚ç‚¹
     if(head==NULL) return NULL;
     struct ListNode*fast=head;
     struct ListNode*slow=head;
-    while(fast!=NULL&&fast->next!=NULL)//·Ö±ğ¶ÔÓ¦ÆæÅ¼Á½ÖÖÇé¿ö
+    while(fast!=NULL&&fast->next!=NULL)//åˆ†åˆ«å¯¹åº”å¥‡å¶ä¸¤ç§æƒ…å†µ
     {
         
         fast=fast->next;
@@ -26,7 +27,7 @@ struct ListNode* middleNode(struct ListNode* head) {
     }
      return slow;
 }
-//------------Á¦¿Û141ÅĞ¶ÏÁ´±íÊÇ·ñÓĞ»·------------- 
+//------------åŠ›æ‰£141åˆ¤æ–­é“¾è¡¨æ˜¯å¦æœ‰ç¯------------- 
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -49,7 +50,7 @@ bool hasCycle(struct ListNode *head) {
     }
     return false;
 }
-//----------------Á¦¿Û160ÅĞ¶ÏÁ½¸öÁ´±íÊÇ·ñÏà½»------------------- 
+//----------------åŠ›æ‰£160åˆ¤æ–­ä¸¤ä¸ªé“¾è¡¨æ˜¯å¦ç›¸äº¤------------------- 
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -58,7 +59,7 @@ bool hasCycle(struct ListNode *head) {
  * };
  */
 struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *headB) {
-    //ÏÈ±éÀúÁ½¸öÁ´±í¼ÆËã³¤¶È
+    //å…ˆéå†ä¸¤ä¸ªé“¾è¡¨è®¡ç®—é•¿åº¦
     if(headA==NULL||headB==NULL) return NULL;
     int lenA, lenB;
     lenA=lenB=0;
@@ -93,7 +94,7 @@ struct ListNode *getIntersectionNode(struct ListNode *headA, struct ListNode *he
    return pa;
     
 }
-//------------------Á¦¿Û19É¾³ıµ¹ÊıµÚn¸ö½Úµã----------------- 
+//------------------åŠ›æ‰£19åˆ é™¤å€’æ•°ç¬¬nä¸ªèŠ‚ç‚¹----------------- 
 /**
  * Definition for singly-linked list.
  * struct ListNode {
@@ -117,4 +118,36 @@ struct ListNode* removeNthFromEnd(struct ListNode* head, int n) {
     }
     slow->next=slow->next->next;
 return dem.next;
+}
+//------------------------------------åŠ›æ‰£142å¾ªç¯é“¾è¡¨æ‰¾åˆ°ç¯å£---------------------------------
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode *detectCycle(struct ListNode *head) {
+    if (head==NULL||head->next==NULL) return NULL;
+    //è®¾ç½®è™šæ‹Ÿå¤´èŠ‚ç‚¹
+    struct ListNode*L=(struct ListNode*)malloc(sizeof(struct ListNode));
+    L->next=head;
+    //è®¾ç½®å¿«æ…¢æŒ‡é’ˆ
+    struct ListNode*fast=L->next->next->next;
+    struct ListNode*slow=L->next->next;
+    //åˆ¤æ–­å¾ªç¯æ¡ä»¶
+    while(fast!=slow){
+        if(fast==NULL||fast->next==NULL) return NULL;
+        fast=fast->next;
+        fast=fast->next;
+        slow=slow->next;
+    }
+    //ä»ç›¸é‡å¼€å§‹èµ°
+    struct ListNode*p=fast;
+    struct ListNode*a=head;
+    while(p!=a){
+        p=p->next;
+        a=a->next;
+    }
+    return p;
 }
