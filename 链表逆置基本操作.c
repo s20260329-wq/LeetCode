@@ -9,7 +9,7 @@
 4. 重排链表的感悟,就是有些情况最简单的方法就是从单链表从后往前找信息,但但碍于单链表只有一个指针与无法实现,但我们可以在不影响背景的情况下,让单链表逆置去寻找信息
 还有关于重排链表在实现合并的时候确保中点处会断开,因为不断开很可能会形成一个环,聪儿陷入死循环里面
 5.关于双指针卡出一个区间长度后边的指针不用非要指向下一个节点,有时候直接指向该组的尾节点会有更好的判断条件(k组反转一个链表)
- 
+ 6.关于重新按照一定规则排列链表这个问题,大多数排完一个不用断开,但还是建议排一个断开一个,防止形成环形链表
 */
 //----------------206反转链表--------------- 
 /**
@@ -217,5 +217,36 @@ void reorderList(struct ListNode* head) {
         L->next=l;
     }
 }
-
-
+//-------------------力扣328奇偶链表--------------------
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     struct ListNode *next;
+ * };
+ */
+struct ListNode* oddEvenList(struct ListNode* head) {
+    //判断边界的条件确保前三个节点存在
+    if(head==NULL||head->next==NULL||head->next->next==NULL) return head;
+    //创建虚拟头节点
+    struct ListNode*L=(struct ListNode*)malloc(sizeof(struct ListNode));
+   L=head;
+   //三个指针
+   struct ListNode*l, *r, *pr;
+   l=head->next->next;
+   r=pr=head->next;
+   L->next=NULL;
+   while(l!=NULL&&r!=NULL){
+    L->next=l;
+    r->next=l->next;
+    r=r->next;
+    if(r==NULL) l==NULL;
+    else{
+        l=r->next;
+    }
+    L=L->next;
+    L->next=NULL;
+   }
+   L->next=pr;
+   return head;
+}
