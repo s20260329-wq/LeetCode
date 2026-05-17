@@ -1,9 +1,9 @@
 /*
-´Ó½ñÌì¿ªÊ¼Ð´Ê÷µÄËã·¨Ìâ
-·´Ë¼Ð´ÔÚwordÀïÃæÁË 
+ä»Žä»Šå¤©å¼€å§‹å†™æ ‘çš„ç®—æ³•é¢˜
+åæ€å†™åœ¨wordé‡Œé¢äº† 
 
 */
-//-----------100ÌâÏàÍ¬Ê÷----------
+//-----------100é¢˜ç›¸åŒæ ‘----------
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -13,17 +13,17 @@
  * };
  */
 bool isSameTree(struct TreeNode* p, struct TreeNode* q) {
-    //µÝ¹éÖÕÖ¹Ìõ¼þ
+    //é€’å½’ç»ˆæ­¢æ¡ä»¶
     if(p==NULL&&q!=NULL) return false;
     if(p!=NULL&&q==NULL) return false;
     if(p==NULL&&q==NULL) return true;
     if(p->val!=q->val)  return false;
-    //Èç¹ûÏàµÈ²Å½øÐÐµÝ¹é±éÀú
-    //²ÉÓÃÏÈÐò±éÀú
-    //·µ»ØÖµÔõÃ´Ð´
+    //å¦‚æžœç›¸ç­‰æ‰è¿›è¡Œé€’å½’éåŽ†
+    //é‡‡ç”¨å…ˆåºéåŽ†
+    //è¿”å›žå€¼æ€Žä¹ˆå†™
     return  isSameTree( p->left, q->left)&&isSameTree( p->right, q->right);
 } 
-//-----------------101¶Ô³ÉÊ÷------------
+//-----------------101å¯¹æˆæ ‘------------
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -33,9 +33,9 @@ bool isSameTree(struct TreeNode* p, struct TreeNode* q) {
  * };
  */
  bool tOf(struct TreeNode*r,struct TreeNode*l){
-    //²ÉÓÃÏÈÐò±éÀú
-    //ÅÐ¶ÏµÝ¹éÖÕÖ¹Ìõ¼þ
-    //ÅÐ¶ÏÏÈ²Ù×÷ºóµÝ¹é»¹ÊÇÏÈµÝ¹éºó²Ù×÷
+    //é‡‡ç”¨å…ˆåºéåŽ†
+    //åˆ¤æ–­é€’å½’ç»ˆæ­¢æ¡ä»¶
+    //åˆ¤æ–­å…ˆæ“ä½œåŽé€’å½’è¿˜æ˜¯å…ˆé€’å½’åŽæ“ä½œ
     if(r==NULL&&l!=NULL) return false;
     if(l==NULL&&r!=NULL) return false;
     if(r==NULL&&l==NULL) return true;
@@ -48,7 +48,7 @@ bool isSymmetric(struct TreeNode* root) {
     return tOf(root->right,root->left);
 
 }
-//-------------110Æ½ºâÊ÷-----------------
+//-------------110å¹³è¡¡æ ‘-----------------
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -61,14 +61,14 @@ bool isSymmetric(struct TreeNode* root) {
  #define MAX(a, b) ((a) > (b) ? (a) : (b))
  int isBalancedd(struct TreeNode*root)
  {
-    //ÅÐ¶ÏµÝ¹é½áÊøÌõ¼þ
+    //åˆ¤æ–­é€’å½’ç»“æŸæ¡ä»¶
     if(root==NULL) return 0;
-    //²ÉÓÃºóÐò±éÀú
+    //é‡‡ç”¨åŽåºéåŽ†
      int a=isBalancedd(root->left);
      if(a==-1) return -1;
     int b=isBalancedd(root->right);
     if(b==-1) return -1;
-    //ÏÈµÝ¹éÔÙ²Ù×÷
+    //å…ˆé€’å½’å†æ“ä½œ
     if(abs(a-b)>1) return -1;
     else{
         return MAX(a,b)+1;
@@ -79,7 +79,7 @@ bool isBalanced(struct TreeNode* root) {
     if(a!=-1) return true;
     else return false;
 }
-//---------------226·´×ª¶þ²æÊ÷------------
+//---------------226åè½¬äºŒå‰æ ‘------------
 /**
  * Definition for a binary tree node.
  * struct TreeNode {
@@ -89,14 +89,44 @@ bool isBalanced(struct TreeNode* root) {
  * };
  */
 struct TreeNode* invertTree(struct TreeNode* root) {
-    //ÅÐ¶ÏµÝ¹é½áÊøÌõ¼þ
+    //åˆ¤æ–­é€’å½’ç»“æŸæ¡ä»¶
     if(root==NULL) return NULL;
-    //ÏÈÐò±éÀú,½»»»Ö¸Õë
+    //å…ˆåºéåŽ†,äº¤æ¢æŒ‡é’ˆ
     struct TreeNode*temp=root->left;
     root->left=root->right;
     root->right=temp;
     invertTree(root->left);
     invertTree(root->right);
     return root;
-    
 } 
+//--------------------åŠ›æ‰£112è·¯å¾„æ€»å’Œ----------------------
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+ 
+bool hasPathSumm(struct TreeNode* root, int count)
+{
+    //åˆ¤æ–­ç»ˆæ­¢æ¡ä»¶ä¸ºå¶å­èŠ‚ç‚¹å¹¶ä¸”countä¸º0é”™è¯¯countä¸ä¸ºé›¶è€Œæ˜¯å¶å­èŠ‚ç‚¹çš„å€¼
+    if(root->left==NULL&&root->right==NULL&&count==root->val) return true;
+    if(root->left==NULL&&root->right==NULL&&count!=root->val) return false;
+    if(root->left) {
+        if(hasPathSumm(root->left,count-root->val)) return true;
+       // hasPathSumm(root->left,count-root->val);
+        //return true;
+    }//ifè¯­å¥å†…è‡ªåŠ¨åˆ¤åº¦æ˜¯å¦æœ‰ä¸€ä¸ªè·¯å¾„æˆç«‹
+    if(root->right) {
+        if(hasPathSumm(root->right,count-root->val)) return true;
+        //ä¸‹é¢è¿™ä¸ºé”™è¯¯è§£æ³•å¿˜è®°åˆ¤æ–­ä¸‹ä¸€å±‚é€’å½’çš„è¿”å›žå€¼æ˜¯å¦æ­£ç¡®hasPathSumm(root->right,count-root->val);
+        //return true;
+    }
+    return false;
+}
+bool hasPathSum(struct TreeNode* root, int targetSum) {
+    if(root==NULL) return false;
+    return hasPathSumm(root,targetSum);
+}
