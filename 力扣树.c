@@ -4,6 +4,9 @@
 突然发现word文档上传完不能更改那以后反思写道这里吧
 关于路径总和他的返回值处理学到新的东西,相对于树最大深度返回返回值最大值加1而说他返回值是一个状态值而不是一个纯数字的处理那么相对而言这个处理的逻辑就不同
 对于返回值的处理只是判断是否进行下一层递归进行的钥匙,而不是需要这个值,所以说这个值多处用到判断即if语句里面而不是直接返回出去,还有这道题的是我除了kmp算法外第一次接触到回溯这个思想
+98题验证二叉搜索树上传了两个版本一个是错误版一个正确版之所以上传错误版第一是因为他错误太典型局限思维只比较相邻的左右子树;第二个原因是虽然这个思想是错误的但能按照这个思想写出来清晰的理解递归的层次,
+知道返回值怎么写.写到哪人,怎么利用上一层的返回值我感觉这是这几天的知识点整合起来的感觉.
+关于正确版,首先学了二叉搜索树的中序遍历就是从小到大排序,第二学到了中序遍历处理问题的细节之前一直是前序遍历和后序遍历,再一个知道树怎么比较大小,对中序遍历有了更深刻理解,在中序遍历处理信息的时候每个节点其实都是左节点
 */
 //-----------100题相同树----------
 /**
@@ -131,4 +134,37 @@ bool hasPathSumm(struct TreeNode* root, int count)
 bool hasPathSum(struct TreeNode* root, int targetSum) {
     if(root==NULL) return false;
     return hasPathSumm(root,targetSum);
+}
+//------------------力扣98验证二叉搜索树-----------------
+//---------------错误版----------------------
+long long minval=LLONG_MIN;//头文件里面的宏定义
+bool isValidBST(struct TreeNode* root) {
+  //判断终止条件
+  if(root==NULL) return true;
+  //采用中序遍历
+  bool left=isValidBST(root->left);
+  if(minval<root->val) minval=root->val;
+  else return false;
+  bool right=isValidBST(root->right);
+  return left&&right;
+}
+//---------------------正确版---------------------
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+ long long minval=LLONG_MIN;//头文件里面的宏定义
+bool isValidBST(struct TreeNode* root) {
+  //判断终止条件
+  if(root==NULL) return true;
+  //采用中序遍历
+  bool left=isValidBST(root->left);
+  if(minval<root->val) minval=root->val;
+  else return false;
+  bool right=isValidBST(root->right);
+  return left&&right;
 }
