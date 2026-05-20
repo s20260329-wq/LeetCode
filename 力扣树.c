@@ -7,6 +7,8 @@
 98题验证二叉搜索树上传了两个版本一个是错误版一个正确版之所以上传错误版第一是因为他错误太典型局限思维只比较相邻的左右子树;第二个原因是虽然这个思想是错误的但能按照这个思想写出来清晰的理解递归的层次,
 知道返回值怎么写.写到哪人,怎么利用上一层的返回值我感觉这是这几天的知识点整合起来的感觉.
 关于正确版,首先学了二叉搜索树的中序遍历就是从小到大排序,第二学到了中序遍历处理问题的细节之前一直是前序遍历和后序遍历,再一个知道树怎么比较大小,对中序遍历有了更深刻理解,在中序遍历处理信息的时候每个节点其实都是左节点
+700题二叉搜索树搜索这一题正常写不用二叉搜索树的性质也能写出来,这一题滤清思路了,干干净净写出来
+235二叉搜索树的最近公共祖先,这一题的薄弱点还是不能熟悉利用二叉搜索的性质.
 */
 //-----------100题相同树----------
 /**
@@ -167,4 +169,47 @@ bool isValidBST(struct TreeNode* root) {
   else return false;
   bool right=isValidBST(root->right);
   return left&&right;
+}
+//-----------力扣700二叉树搜索树的搜索----------- 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+struct TreeNode* searchBST(struct TreeNode* root, int val) {
+    //判断终止条件
+    if(root==NULL) return NULL;
+    if(root->val==val) return root;
+    struct TreeNode*p=searchBST(root->left,val);
+    struct TreeNode*q=searchBST(root->right,val);
+    if(p!=NULL) return p;
+    else if(q!=NULL) return q;
+    else return NULL;
+
+}
+//----------235二叉搜索树的的最近公共祖先--------------------- 
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+
+struct TreeNode* lowestCommonAncestor(struct TreeNode* root, struct TreeNode* p, struct TreeNode* q) {
+    if(root==NULL) return NULL;
+    if(root->val>p->val&&root->val>q->val)
+    {
+        struct TreeNode*left=lowestCommonAncestor(root->left,p,q);
+        if(left) return left;
+    }
+    if(root->val<p->val&&root->val<q->val){
+        struct TreeNode*right=lowestCommonAncestor(root->right,p,q);
+        if(right) return right;
+    }
+     return root;
 }
