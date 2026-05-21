@@ -9,6 +9,8 @@
 关于正确版,首先学了二叉搜索树的中序遍历就是从小到大排序,第二学到了中序遍历处理问题的细节之前一直是前序遍历和后序遍历,再一个知道树怎么比较大小,对中序遍历有了更深刻理解,在中序遍历处理信息的时候每个节点其实都是左节点
 700题二叉搜索树搜索这一题正常写不用二叉搜索树的性质也能写出来,这一题滤清思路了,干干净净写出来
 235二叉搜索树的最近公共祖先,这一题的薄弱点还是不能熟悉利用二叉搜索的性质.
+236二叉树的最近公共祖先第一点两种情况第一种情况包含另一种情乱,第二其实搜索的时候还是用的先序遍历,所谓后序遍历其实不过是把信息给返回,
+第三的话,就是这个题的返回值也值得推敲,这个返回值能凭直觉写出来,但细想可能就写不出来了,他能保证返回的节一直是那个父节点,即使有一个为空,两个会合后,会返回真正的值
 */
 //-----------100题相同树----------
 /**
@@ -212,4 +214,26 @@ struct TreeNode* lowestCommonAncestor(struct TreeNode* root, struct TreeNode* p,
         if(right) return right;
     }
      return root;
+}
+//-------------------力扣236二叉树的最近公共祖先---------------------
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+struct TreeNode* lowestCommonAncestor(struct TreeNode* root, struct TreeNode* p, struct TreeNode* q) {
+    //判断终止条件两个一个是成功条件,一个是失败条件
+    if(root==NULL) return NULL;
+    if(root==p||root==q)  return root;
+    //进行先序遍历搜索
+    struct TreeNode*left=lowestCommonAncestor(root->left,p,q);
+    struct TreeNode*right=lowestCommonAncestor(root->right,p,q);
+    //对返回值处理进行返回值这里的返回值挺有意思的
+    if(left!=NULL&&right!=NULL) return root;
+    if(left!=NULL&&right==NULL) return left;
+    if(left==NULL&&right!=NULL) return right;
+    return NULL;
 }
