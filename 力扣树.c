@@ -237,3 +237,18 @@ struct TreeNode* lowestCommonAncestor(struct TreeNode* root, struct TreeNode* p,
     if(left==NULL&&right!=NULL) return right;
     return NULL;
 }
+//----------------------------222完全二叉树的节点个数--------------------
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     struct TreeNode *left;
+ *     struct TreeNode *right;
+ * };
+ */
+int countNodes(struct TreeNode* root) {
+    if(root==NULL) return 0;
+    int left=countNodes(root->left);
+    int right=countNodes(root->right);
+    return (left+right)+1;
+}
